@@ -9,6 +9,17 @@ variable "instance_type" {
   default     = "t2.micro"
 }
 
-variable type {
-type = map
+# Variables - Storage Account
+ 
+variable "staList" {
+  type        = map(any)
+  description = "Storage Account List and related information"
+  default = {
+    "stadevr1abcd01" = {
+      "createPrivateEndpoint" = true
+      "resourceToConnect"     = "blob" # pick one from the variable 'azurePrivateDNS'
+      "subnetName"            = "Data"
+      "denyPublicAccess"      = true
+    }
+  }
 }
